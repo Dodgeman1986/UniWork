@@ -13,9 +13,8 @@ namespace TextProcessing
 {
     public partial class Form1 : Form
     {
-        // variable to hold the text from the transition words file
+        // transition words (the, and, an etc)
         private string transitionFileText;
-        // variable to hole the text from the file to be processed
         private string textToProcess;
 
         public Form1()
@@ -26,8 +25,7 @@ namespace TextProcessing
         }
 
         #region Buttons
-
-        // Event handler for the FindFile button
+        
         private void btnFindFile_Click(object sender, EventArgs e)
         {
             try
@@ -81,9 +79,7 @@ namespace TextProcessing
             {
                 string fileName = fileDialog.FileName;
                 txtFilePath.Text = fileName;
-                // a string tht holds all of the text from the txt file
                 textToProcess = File.ReadAllText(fileName);
-                // Enable the transition button
                 btnTransition.Enabled = true;
             }
         }
@@ -100,9 +96,7 @@ namespace TextProcessing
             {
                 string fileName = fileDialog.FileName;
                 txtTransitionWords.Text = fileName;
-                // a string tht holds all of the text from the transition words txt file
                 transitionFileText = File.ReadAllText(fileName);
-                // enable the process button
                 btnProcess.Enabled = true;
             }
         }
@@ -114,7 +108,7 @@ namespace TextProcessing
         // Processes the contents of the text file
         private void ProcessTextFile(string pFileText)
         {
-            // convert the transition word list
+            // convert the transition words string to a list
             List<string> transitionWordList = transitionFileText.Split(',').ToList();
             // create a list of punctuation and character delimiters
             char[] delimiters = {' ', ',', '.', ':', '\t', '\r', '\n', '?', '-', ';', '!', '\"'};
@@ -166,13 +160,12 @@ namespace TextProcessing
         // Displays the top 10 words and their counts
         private void DisplayResults(IEnumerable<KeyValuePair<string, int>> pSortedWordDictionary)
         {
-            // stringbuilder so that a string can be built to display in the richtextbox
             StringBuilder sb = new StringBuilder();
 
             // iterate over the first 10 items in the sortedDictionary object
             foreach (var pair in pSortedWordDictionary.Take(10))
             {
-                // add the key/value pair to the string builder
+                // add the key/value pair to the stringbuilder
                 sb.AppendFormat("{0} - {1}{2}", pair.Key, pair.Value, Environment.NewLine);
             }
 
