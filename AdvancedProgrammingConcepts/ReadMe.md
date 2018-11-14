@@ -2,9 +2,11 @@
 
 ## How to run the text processing code
 
-1. C# program
-2. Haskell program
-3. Test files
+### C# program
+### Haskell program
+### Test files
+
+----
 
 ### C#
   * The C# application 'TextProcessing' requires visual studio 12 and the dotnot framework version 4.
